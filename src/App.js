@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import AppRoutes from "./routes/AppRoutes";
+import Loading from "./helpers/Loading";
+import ScrollToTop from "./helpers/ScrollToTop";
 
-function App() {
+const App = () => {
+  const [loading, setLoading] = useState(true);
+
+  // Example: fake loading for 2 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {/* Scroll to top on route change */}
+      <ScrollToTop />
+
+      {/* Loading spinner */}
+      {loading && <Loading />}
+
+      {/* Main app content */}
+      {!loading && <AppRoutes />}
+    </>
   );
-}
+};
 
 export default App;
