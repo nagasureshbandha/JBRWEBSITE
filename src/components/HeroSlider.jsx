@@ -45,7 +45,7 @@ const HeroSlider = () => {
   };
 
   return (
-    <div className="relative h-screen overflow-hidden">
+    <section id="hero" className="relative h-screen overflow-hidden scroll-mt-28">
       {/* Slides Container */}
       <div className="relative h-full transition-transform duration-500 ease-in-out">
         {slides.map((slide, index) => (
@@ -109,7 +109,7 @@ const HeroSlider = () => {
           </span>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
