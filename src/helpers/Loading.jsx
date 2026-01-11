@@ -1,11 +1,11 @@
 import React from "react";
-import logo from "../assets/images/logo.png"; // Your logo path
+import logo from "../assets/images/whitelogo.png"; // Your logo path
 
 const Loading = () => {
   return (
     <div
       className="fixed inset-0 flex flex-col items-center justify-center z-50"
-      style={{ backgroundColor: "rgba(12, 25, 56, 0.9)" }} // darker navy-blue with 90% opacity
+      style={{ backgroundColor: "rgba(0, 0, 0, 0.9)" }} // darker navy-blue with 90% opacity
     >
       {/* Spinner wrapper */}
       <div className="relative w-28 h-28">

@@ -27,7 +27,10 @@ module.exports = {
             transform: 'translateY(0)'
           },
         }
-      }
+      },
+          backdropBlur: {
+        xs: '2px',
+      },
     },
   },
   plugins: [],

@@ -1,47 +1,77 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import HeroSlider from '../components/HeroSlider';
 import Footer from '../components/Footer';
 
 const Home = () => {
+  const [watermarkPosition, setWatermarkPosition] = useState(0);
+
+  // Animation for watermarks
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setWatermarkPosition((prev) => (prev - 1) % 100);
+    }, 30); // Adjust speed here (lower = faster)
+
+    return () => clearInterval(interval);
+  }, []);
 
   // FAQ Data
   const faqs = [
     {
-      question: "What services do you provide?",
-      answer: "We provide web development, app development, digital marketing, SEO, UI/UX design, and AI solutions."
+      question: "What technologies do you specialize in?",
+      answer: "We work with modern technologies including React, Next.js, Node.js, Python, Django, Laravel, WordPress, Shopify, and various cloud platforms."
     },
     {
-      question: "How long does a project take?",
-      answer: "Project duration depends on the complexity and scope. Typical projects range from 2 to 12 weeks."
+      question: "How do you ensure project quality?",
+      answer: "We follow agile methodology with regular testing, code reviews, and client feedback sessions. We also conduct thorough QA before deployment."
     },
     {
-      question: "Do you provide ongoing support?",
-      answer: "Yes, we provide maintenance and support packages to ensure your solution runs smoothly."
+      question: "Can I see examples of your previous work?",
+      answer: "Yes, we have a portfolio section showcasing our projects. We can also arrange a demo meeting to show live examples relevant to your industry."
     },
     {
-      question: "What is your pricing model?",
-      answer: "Pricing is based on project requirements. We provide transparent quotes after understanding your needs."
+      question: "What's your process for starting a new project?",
+      answer: "Our process includes discovery consultation, requirement analysis, proposal, agreement signing, project kickoff, and regular progress updates."
     },
     {
-      question: "Can I request custom solutions?",
-      answer: "Absolutely! We specialize in tailor-made solutions for businesses of all sizes."
+      question: "Do you offer training for the solutions you build?",
+      answer: "Yes, we provide comprehensive training sessions and detailed documentation to ensure your team can manage the solution effectively."
+    },
+    {
+      question: "What payment methods do you accept?",
+      answer: "We accept bank transfers, credit cards, PayPal, and other secure payment methods. Payment terms are flexible based on project size."
     }
   ];
 
-  // FAQ Accordion Item
+  // Watermark texts - you can customize these
+  const watermarkTexts = [
+    "INNOVATION",
+    "EXCELLENCE",
+    "CREATIVITY",
+    "DIGITAL TRANSFORMATION",
+    "TECHNOLOGY",
+    "GROWTH",
+    "SUCCESS",
+    "QUALITY",
+    "STRATEGY",
+    "SOLUTIONS",
+    "EXPERTISE",
+    "RESULTS"
+  ];
+
+  // FAQ Accordion Item Component
   const FAQItem = ({ faq }) => {
     const [open, setOpen] = useState(false);
 
     return (
-      <div className="border border-gray-200 rounded-lg overflow-hidden">
+      <div className="border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-md">
         <button
-          className="w-full text-left px-6 py-4 flex justify-between items-center bg-white hover:bg-gray-50 focus:outline-none"
+          className="w-full text-left px-6 py-3 flex justify-between items-center bg-white hover:bg-gray-50 focus:outline-none transition-colors duration-300"
           onClick={() => setOpen(!open)}
         >
-          <span className="font-medium text-gray-900">{faq.question}</span>
+          <span className="font-semibold text-gray-900 text-lg pr-4">{faq.question}</span>
           <svg
-            className={`w-5 h-5 text-gray-500 transform transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+            className={`w-6 h-6 text-primary flex-shrink-0 transform transition-transform duration-300 ${open ? "rotate-180" : ""}`}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -50,8 +80,8 @@ const Home = () => {
           </svg>
         </button>
         {open && (
-          <div className="px-6 py-4 bg-gray-50 text-gray-700">
-            {faq.answer}
+          <div className="px-6 py-5 bg-gray-50 text-gray-700 border-t border-gray-200">
+            <p className="leading-relaxed">{faq.answer}</p>
           </div>
         )}
       </div>
@@ -60,6 +90,7 @@ const Home = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <Header />
       <main className="flex-grow">
         {/* Hero Section with Carousel */}
         <section className="relative">
@@ -67,7 +98,7 @@ const Home = () => {
         </section>
 
         {/* About Section */}
-        <section id="about" className="py-20 bg-gray-50">
+        <section id="about" className="py-10 bg-gray-50">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               {/* Images */}
@@ -131,7 +162,7 @@ const Home = () => {
                   </div>
                 </div>
 
-                <button className="px-8 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-secondary transition-colors">
+                <button className="px-8 py-2 bg-orange-500 text-white font-semibold rounded-lg hover:bg-orange-800 transition-colors duration-300">
                   More About Us
                 </button>
               </div>
@@ -139,8 +170,118 @@ const Home = () => {
           </div>
         </section>
 
+        {/* Animated Watermark Section */}
+ {/* Animated Watermark Section */}
+{/* Animated Watermark Section - Watermarks Below Content */}
+<section className="relative py-10 overflow-hidden bg-gradient-to-r from-blue-50 to-gray-50">
+  {/* Foreground content */}
+  <div className="container mx-auto px-4">
+    <div className="text-center max-w-4xl mx-auto">
+      <div className="inline-block px-6 py-2 bg-white/90 backdrop-blur-sm rounded-full shadow-lg mb-8">
+        <span className="text-2xl font-bold text-primary">WHY CHOOSE US</span>
+      </div>
+      
+      <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-8">
+        Your Digital <span className="text-primary">Transformation</span> Partner
+      </h2>
+      
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+        <div className="bg-white/95 backdrop-blur-sm p-4 rounded-2xl shadow-xl transform hover:-translate-y-2 transition-transform duration-300">
+          <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <h3 className="text-xl font-bold text-gray-900 mb-4">Fast Delivery</h3>
+          <p className="text-gray-600">Quick turnaround without compromising quality.</p>
+        </div>
+        
+        <div className="bg-white/95 backdrop-blur-sm p-8 rounded-2xl shadow-xl transform hover:-translate-y-2 transition-transform duration-300">
+          <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 className="text-xl font-bold text-gray-900 mb-4">Quality Assurance</h3>
+          <p className="text-gray-600">Rigorous testing for flawless performance.</p>
+        </div>
+        
+        <div className="bg-white/95 backdrop-blur-sm p-8 rounded-2xl shadow-xl transform hover:-translate-y-2 transition-transform duration-300">
+          <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+          </div>
+          <h3 className="text-xl font-bold text-gray-900 mb-4">Expert Team</h3>
+          <p className="text-gray-600">Experienced professionals for your project.</p>
+        </div>
+      </div>
+      
+      <button className="mt-12 px-10 py-2 bg-orange-500 text-white font-bold text-lg rounded-xl hover:bg-orange-800 transition-colors duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+        Start Your Project Today
+      </button>
+    </div>
+  </div>
+
+  {/* Watermarks BELOW the content - Separate section */}
+  <div className="relative h-64 mt-20 overflow-hidden">
+    {/* Top row - moving right to left */}
+    <div 
+      className="absolute top-0 whitespace-nowrap"
+      style={{ 
+        transform: `translateX(${watermarkPosition}%)`,
+        animation: 'marquee 30s linear infinite'
+      }}
+    >
+      {watermarkTexts.map((text, index) => (
+        <span
+          key={`top-${index}`}
+          className="inline-block mx-8 text-2xl md:text-3xl lg:text-4xl font-black text-gray-300/70 uppercase tracking-wider"
+        >
+          {text}
+        </span>
+      ))}
+    </div>
+    
+    {/* Middle row - moving left to right (reverse) */}
+    <div 
+      className="absolute top-1/2 -translate-y-1/2 whitespace-nowrap"
+      style={{ 
+        transform: `translateX(${-watermarkPosition}%)`,
+        animation: 'marquee-reverse 25s linear infinite'
+      }}
+    >
+      {[...watermarkTexts].reverse().map((text, index) => (
+        <span
+          key={`middle-${index}`}
+          className="inline-block mx-8 text-2xl md:text-2xl lg:text-3xl font-black text-gray-400/80 uppercase tracking-wider"
+        >
+          {text}
+        </span>
+      ))}
+    </div>
+    
+    {/* Bottom row - moving right to left */}
+    <div 
+      className="absolute bottom-0 whitespace-nowrap"
+      style={{ 
+        transform: `translateX(${watermarkPosition}%)`,
+        animation: 'marquee 35s linear infinite'
+      }}
+    >
+      {watermarkTexts.map((text, index) => (
+        <span
+          key={`bottom-${index}`}
+          className="inline-block mx-8 text-2xl md:text-2xl lg:text-3xl font-black text-gray-300/70 uppercase tracking-wider"
+        >
+          {text}
+        </span>
+      ))}
+    </div>
+  </div>
+</section>
         {/* Services Section */}
-        <section id="services" className="py-20">
+        <section id="services" className="py-10">
           <div className="container mx-auto px-4">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <span className="inline-block px-4 py-1 bg-primary/10 text-primary rounded-full text-[25px] font-medium mb-4">
@@ -187,7 +328,7 @@ const Home = () => {
 
                     <a
                       href={service.link}
-                      className="inline-flex items-center text-primary font-semibold group-hover:text-secondary transition-colors"
+                      className="inline-flex items-center text-orange-500 font-semibold group-hover:text-orange-800 transition-colors"
                     >
                       View Details
                       <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -202,29 +343,80 @@ const Home = () => {
         </section>
 
         {/* FAQ Section */}
-        <section id="faqs" className="py-20 bg-gray-50">
-          <div className="container mx-auto px-4 max-w-4xl">
-            <div className="text-center mb-12">
-              <span className="inline-block px-4 py-1 bg-primary/10 text-primary rounded-full text-[25px] font-medium mb-4">
+        <section id="faqs" className="py-10 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <span className="inline-block px-6 py-2 bg-primary/10 text-primary rounded-full text-lg font-semibold mb-4">
                 FAQs
               </span>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 Frequently Asked Questions
               </h2>
-              <p className="text-gray-600 mt-4">
-                Find answers to common questions about our services and processes.
+              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                Find comprehensive answers to common questions about our services, processes, and how we work.
               </p>
             </div>
 
-            <div className="space-y-4">
-              {faqs.map((faq, index) => (
-                <FAQItem key={index} faq={faq} />
-              ))}
+            {/* Two Column FAQ Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
+              {/* Left Column */}
+              <div className="space-y-6">
+                {faqs.slice(0, 3).map((faq, index) => (
+                  <FAQItem key={index} faq={faq} />
+                ))}
+              </div>
+              
+              {/* Right Column */}
+              <div className="space-y-6">
+                {faqs.slice(3, 6).map((faq, index) => (
+                  <FAQItem key={index + 3} faq={faq} />
+                ))}
+              </div>
+            </div>
+
+            {/* Additional FAQ Info */}
+            <div className="mt-16 text-center max-w-3xl mx-auto">
+              <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+                <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+                  <div className="text-left">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">Still have questions?</h3>
+                    <p className="text-gray-600">Can't find the answer you're looking for? Our team is here to help.</p>
+                  </div>
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <button className="px-8 py-2 bg-orange-500 text-white font-semibold rounded-lg hover:bg-orange-800 transition-colors duration-300">
+                      Contact
+                    </button>
+                    <button className="px-8 py-2 border-2 border-orange-500 text-orange-500 font-semibold rounded-lg hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                      Schedule Call
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
-
       </main>
+      
+      {/* Add CSS animations */}
+      <style jsx>{`
+        @keyframes marquee {
+          0% {
+            transform: translateX(0%);
+          }
+          100% {
+            transform: translateX(-100%);
+          }
+        }
+        
+        @keyframes marquee-reverse {
+          0% {
+            transform: translateX(-100%);
+          }
+          100% {
+            transform: translateX(0%);
+          }
+        }
+      `}</style>
     </div>
   );
 };
